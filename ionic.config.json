@@ -1,0 +1,8 @@
+{
+  "name": "qrcdoor-app",
+  "app_id": "1d9eb231",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
