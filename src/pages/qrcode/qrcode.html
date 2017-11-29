@@ -3,10 +3,15 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>QR Code</ion-title>
+    <ion-title>Abrir Localmente</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
 
+<ion-content padding text-center>
+  <div *ngIf="show" class="container">
+    <div>
+      <img height="224" width="224" src="assets/img/qr-code-sample.jpg" />
+    </div>
+  </div>
 </ion-content>

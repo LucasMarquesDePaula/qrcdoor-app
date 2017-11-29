@@ -1,34 +1,38 @@
+import { AlertController } from "ionic-angular";
 import { Component } from "@angular/core";
 import { NavController, NavParams } from "ionic-angular";
-import { PopoverController } from 'ionic-angular';
+import { PopoverController } from "ionic-angular";
 
 @Component({
   selector: "page-qrcode",
   templateUrl: "qrcode.html"
 })
 export class QRCodePage {
-  selectedItem: any;
-  items: Array<{ text: string }>;
+  show: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get("item");
-
-    this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        text: `Ambiente ${i}`
-      });
-    }
-  }
-
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    let popover = this.popoverCtrl.create(QRCodePage);
-    popover.present();
-
-    this.navCtrl.push(QRCodePage, {
-      item: item
+  constructor(private alertCtrl: AlertController) {
+    const self = this;
+    self.show = false;
+    const alert = this.alertCtrl.create({
+      title: "Confirmar abertura",
+      inputs: [{ name: "password", placeholder: "Senha", type: "password" }],
+      buttons: [
+        {
+          text: "Cancelar",
+          role: "cancel",
+          handler: data => {
+            console.log("Cancel clicked");
+          }
+        },
+        {
+          text: "Confirmar",
+          handler: data => {
+            self.show = true
+          }
+        }
+      ]
     });
+
+    alert.present();
   }
 }
